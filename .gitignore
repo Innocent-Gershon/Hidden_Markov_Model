@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+
+# Raw sensor recording folders (data is already merged into dataset/)
+*_txt-*/
+*txt-*/
+
+# Notebook assembly helpers (not needed for submission)
+notebook_cells/
+make_notebook.py
+build_dataset.py
