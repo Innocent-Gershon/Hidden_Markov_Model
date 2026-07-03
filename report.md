@@ -1,7 +1,9 @@
 # Modeling Human Activity States Using Hidden Markov Models
 
-**Course:** Machine Learning  
+**Name:** Innocent Nangah  
+**Course:** Machine Learning Techniques II  
 **Submission date:** July 3, 2026  
+**GitHub:** https://github.com/Innocent-Gershon/Hidden_Markov_Model  
 **Device:** iPhone 16 — Sensor Logger v1.60.1  
 **Sampling rate:** 100 Hz (10 ms intervals)
 
