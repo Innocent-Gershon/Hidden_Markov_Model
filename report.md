@@ -202,14 +202,7 @@ This confusion is one-directional: the standing model has 100% specificity (no f
 
 ### 5.5 Visualisations
 
-- **Figure 1 (fig_raw_signals.png):** Raw accelerometer and gyroscope traces for each activity. Jumping shows large-amplitude, quasi-periodic bursts. Still shows near-flat signals. Walking shows clear rhythmic oscillations at ~1–2 Hz.
-- **Figure 2 (fig_feature_distributions.png):** Normalised feature distributions per activity. `accel_rms` and `gyro_rms` are the most discriminative: jumping has a high, wide distribution; still is tightly clustered near zero.
-- **Figure 3 (fig_convergence.png):** Baum–Welch log-likelihood curves. Still and Jumping converge in 3 iterations; Standing takes 12, reflecting more complex within-class variation.
-- **Figure 4 (fig_transition_matrices.png):** Transition heatmaps. The still and standing HMMs show strong self-transitions (diagonal-dominant), consistent with sustained posture. The walking model shows cyclic transitions reflecting gait phases.
-- **Figure 5 (fig_emission_means.png):** Emission means for each hidden state and feature. States within the jumping model show high variance in `accel_rms` and `spectral_energy`, reflecting the impact-then-flight dynamics.
-- **Figure 6 (fig_viterbi_sequences.png):** Viterbi-decoded state sequences for walking\_10 and jumping\_10. Walking shows smooth, cyclic state transitions; jumping shows irregular state visits due to shorter duration.
-- **Figure 7 (fig_confusion_matrix.png):** Confusion matrix as described in Section 5.2.
-- **Figure 8 (fig_predicted_timeline.png):** Window-by-window prediction timelines for four test recordings, showing temporal consistency of predictions.
+Eight figures are included in the repository and embedded in the notebook. **Fig. 1** shows raw accelerometer and gyroscope traces — jumping displays large-amplitude bursts, still is near-flat, walking shows clear ~1–2 Hz rhythmic oscillations. **Fig. 2** shows normalised feature distributions per activity; `accel_rms` and `gyro_rms` are the most discriminative. **Fig. 3** shows Baum–Welch convergence curves for all four models. **Fig. 4** shows transition matrix heatmaps — still and standing are diagonal-dominant (sustained posture), walking shows cyclic off-diagonal transitions. **Fig. 5** shows emission means per hidden state, with jumping states exhibiting high `accel_rms` and `spectral_energy`. **Fig. 6** shows Viterbi-decoded state sequences for two test recordings. **Fig. 7** is the confusion matrix. **Fig. 8** shows window-by-window predicted activity timelines across four test recordings.
 
 ---
 
@@ -242,37 +235,3 @@ Several targeted improvements would significantly boost performance:
 ### 6.5 Conclusion
 
 A Hidden Markov Model pipeline was successfully built to recognise four human activities from real smartphone IMU data. The model achieved **83% overall accuracy** on genuinely unseen test recordings, with perfect classification of still, standing, and walking, and 23% recall for jumping. The Baum–Welch algorithm converged reliably for all four activity models, and the Viterbi algorithm revealed physically interpretable hidden-state sequences. The main limitation — jumping/standing confusion — is directly attributable to short test recording durations and suggests a clear path forward for improvement.
-
----
-
-## Appendix: Project File Structure
-
-```
-Hidden_Markov_Model/
-├── dataset/                         # 52 labelled CSV files (activity_N.csv)
-│   ├── still_0.csv  ...  still_12.csv
-│   ├── standing_0.csv  ...  standing_12.csv
-│   ├── walking_0.csv  ...  walking_12.csv
-│   └── jumping_0.csv  ...  jumping_12.csv
-├── HMM_Activity_Recognition.ipynb   # Main Jupyter notebook
-├── build_dataset.py                 # Script to merge raw folders into dataset/
-├── notebook_cells/                  # Individual cell source files
-│   ├── cell_01_imports.py
-│   ├── cell_02_load.py
-│   ├── cell_03_raw_viz.py
-│   ├── cell_04_features.py
-│   ├── cell_05_normalize.py
-│   ├── cell_06_train.py
-│   ├── cell_07_visualize.py
-│   ├── cell_08_viterbi.py
-│   └── cell_09_evaluation.py
-├── fig_raw_signals.png
-├── fig_feature_distributions.png
-├── fig_convergence.png
-├── fig_transition_matrices.png
-├── fig_emission_means.png
-├── fig_viterbi_sequences.png
-├── fig_confusion_matrix.png
-├── fig_predicted_timeline.png
-└── report.md                        # This report
-```
