@@ -10,5 +10,3 @@ notebook_cells/
 make_notebook.py
 build_dataset.py
 
-# Generated files
-report.html
